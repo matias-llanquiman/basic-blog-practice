@@ -17,8 +17,8 @@ export const getPostbyid = async (id) => {
 
 export const create = async (post) => {
   const result = await pool.query(
-    `INSERT INTO post(title, content, media_url, created_at, updated_at) VALUES($1, $2, $3)`,
-    [post.title, post.content ?? null, post.media_url ?? null],
+    `INSERT INTO post(title, content, media_url) VALUES($1, $2, $3)`,
+    [post.title, post.content, post.media_url],
   );
   let message = "Error while inserting data";
 
