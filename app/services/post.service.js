@@ -11,3 +11,11 @@ export const getPost = (id) => {
 export const create = (post) => {
   return postRepository.create(post);
 };
+
+export const update = (post, id) => {
+  return postRepository.update(post, id);
+};
+
+export const remove = (id) => {
+  return postRepository.remove(id);
+};

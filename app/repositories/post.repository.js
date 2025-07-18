@@ -28,3 +28,33 @@ export const create = async (post) => {
 
   return { message };
 };
+
+export const update = async (post, id) => {
+  const result = await pool.query(
+    `UPDATE post 
+                        SET title = $1, 
+                            content = $2,
+                            media_url = $3,
+                            updated_at = NOW() 
+                        WHERE id = $4`,
+    [post.title, post.content, post.media_url, id],
+  );
+  let message = "Error while updating data";
+
+  if (result.rowCount) {
+    message = "Data updated successfully";
+  }
+  return { message };
+};
+
+export const remove = async (id) => {
+  const result = await pool.query(`DELETE FROM post WHERE id = $1`, [id]);
+
+  let message = "Error while removing data";
+
+  if (result.rowCount) {
+    message = "Value removed successfully";
+  }
+
+  return message;
+};
